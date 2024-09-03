@@ -103,7 +103,8 @@ ul li{
   margin: 0 auto;
   border-radius: 5rem;
   word-wrap: break-word;
-    
+  overflow-y: auto;
+  overflow-x: auto;
 
   cursor: pointer;
   position: relative;
