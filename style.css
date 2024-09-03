@@ -102,6 +102,8 @@ ul li{
   min-height: 50px;
   margin: 0 auto;
   border-radius: 5rem;
+  word-wrap: break-word;
+    
 
   cursor: pointer;
   position: relative;
