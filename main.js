@@ -16,7 +16,6 @@ function newTask() {
   } else if (taskInput.value.length < 5) {
     alert("Invalid Task");
   } else {
-  
     let li = document.createElement("li");
     li.innerHTML = taskInput.value;
     
