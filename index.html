@@ -9,16 +9,21 @@
   </head>
   <body>
     <div class="container">
-      <h1>To-Do List</h1>
+      <h1 id = title>TO-DO LIST</h1>
       <div class="todo-list">
         <div class="row">
           <input type="text" id="inputfield" placeholder="Add Task" required>
+          <h4 id="until">Deadline until:</h4>
+          <div class="datetime-container">
+            <input type="date" id="calendar" placeholder="Until" required>
+            <input type="time" id="time" placeholder="when" required>
+          </div>
           <button id="add-btn">Add</button>
         </div>
         <ul id="list-container">
         </ul>
       </div>
     </div>
-    <script src = "main.js"> </script>
+    <script src="main.js"></script>
   </body>
 </html>
