@@ -4,10 +4,32 @@ const dateInput = document.getElementById('calendar');
 const timeInput = document.getElementById('time');
 const taskList = document.getElementById('list-container');
 const addButton = document.getElementById('add-btn');
+const expiredList = document.getElementById('expired-container');
 
 // Function to save tasks to localStorage
 function saveData() {
   localStorage.setItem('data', taskList.innerHTML);
+  localStorage.setItem('expiredData', expiredList.innerHTML);  // Save expired tasks
+}
+
+// Function to sort tasks by deadline
+function sortTasks() {
+  const tasksArray = Array.from(taskList.getElementsByTagName('li'));
+  
+  tasksArray.sort((a, b) => {
+    const deadlineA = a.getAttribute('data-deadline');
+    const deadlineB = b.getAttribute('data-deadline');
+    return Number(deadlineA) - Number(deadlineB);
+  });
+
+  tasksArray.forEach(task => taskList.appendChild(task));
+}
+
+// Function to move expired tasks to the expired container
+function moveToExpired(task) {
+  taskList.removeChild(task);  // Remove from the task list
+  expiredList.appendChild(task);  // Add to the expired list
+  saveData();
 }
 
 // Function to add a new task
@@ -28,7 +50,7 @@ function newTask() {
     let li = document.createElement("li");
     let deadline = new Date(`${date}T${time}`);
     
-    li.innerHTML = `<strong>${taskText}</strong> <span>${date} ${time}</span>`;
+    li.innerHTML = `<strong>${taskText}</strong> <span>${date} | ${time}</span>`;
     
     // Create and add the trash icon
     let trashIcon = document.createElement("i");
@@ -63,11 +85,25 @@ function newTask() {
     setInterval(() => {
       const now = new Date();
       if (deadline.getTime() < now.getTime()) {
-        li.remove();  // Remove task if deadline has passed
-        saveData();
+        moveToExpired(li);  // Move task to expired container if deadline has passed
       }
     }, 60000);  // Check every minute
+
+    // Sort the tasks after adding a new one
+    sortTasks();
   }
+}
+
+// Function to check for expired tasks on page load
+function checkForExpiredTasks() {
+  const now = new Date();
+
+  taskList.querySelectorAll("li").forEach((li) => {
+    const deadline = li.getAttribute('data-deadline');
+    if (deadline && Number(deadline) < now.getTime()) {
+      moveToExpired(li);
+    }
+  });
 }
 
 // Event listener for the Add button
@@ -99,12 +135,17 @@ if (localStorage.getItem("data")) {
       li.remove();
       saveData();
     });
-
-    // Remove expired tasks on page load
-    const now = new Date();
-    if (deadline && Number(deadline) < now.getTime()) {
-      li.remove();
-      saveData();
-    }
   });
+
+  // Check for expired tasks on load
+  checkForExpiredTasks();
+
+  // Sort the tasks when loading from localStorage
+  sortTasks();
+}
+
+// Load expired tasks from localStorage
+if (localStorage.getItem("expiredData")) {
+  expiredList.innerHTML = localStorage.getItem("expiredData");
+  
 }

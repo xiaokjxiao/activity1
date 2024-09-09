@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=Micro+5&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pf-tempesta-seven');
+@import url('https://fonts.cdnfonts.com/css/pixantiqua');
+
 * {
   margin: 0;
   padding: 0;
@@ -26,18 +28,17 @@ body {
 }
 
 h1 {
-  font-size: 50px;
-  font-family: "Jersey 25", sans-serif;
-  font-size: 100px;
+  font-family: "Pixantiqua", sans-serif;
+  font-size: 60px;
 }
 
 .todo-list {
   width: 500px;
   background: rgba(63, 54, 193, 0.8);
   padding: 30px;
-  border-radius: 1rem;
-  box-shadow: 8px 8px 5px 3px rgba(0, 0, 0, 0.2);
-  background-color: rgba(76, 108, 238, 0.351);
+  border-radius: 0.5rem;
+  box-shadow: 8px 8px 5px 3px rgba(8, 9, 39, 0.2);
+  background-color: rgba(105, 88, 215, 0.388);
 }
 
 .todo-list h2 {
@@ -50,16 +51,16 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  border-radius: 30px;
-  margin: 30px 0;
+  gap: 15px;
+  margin: 30px 10px;
   width: 95%;
+  border-bottom: 0;
 }
 
 input {
   color: rgb(11, 7, 57);
-  font-size: 17px;
-  font-family: "Pixelify Sans", sans-serif;
+  font-size: 25px;
+  font-family: 'PF Tempesta Seven', sans-serif;
   width: 100%;
   border: none;
   outline: none;
@@ -71,12 +72,14 @@ input {
 
 input::placeholder {
   color: #bad5ff;
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: 'PF Tempesta Seven', sans-serif;
+  font-size: 20px
 }
 
 button {
   border: none;
   outline: none;
+  font-family: 'PF Tempesta Seven', sans-serif;
   margin-top: 10px;
   padding: 12px 30px;
   background-color: rgb(11, 7, 57);
@@ -93,6 +96,8 @@ ul {
   padding: 0;
   margin: 0;
   list-style: none;
+  font-family: 'PF Tempesta Seven', sans-serif;
+
 }
 
 ul li {
@@ -111,10 +116,12 @@ ul li {
   align-items: center;
   justify-content: space-between;
   transition: 0.2s ease-in-out;
+  font-family: 'PF Tempesta Seven', sans-serif;
+
 }
 
 ul li.checked {
-  color: rgba(255, 0, 0, 0.564);
+  color: rgba(5, 22, 53, 0.564);
   text-decoration: line-through;
 }
 
@@ -126,7 +133,7 @@ ul li .task-text {
 
 ul li .task-text span {
   font-size: 0.9rem;
-  color: rgb(50, 8, 8);
+  color: rgb(11, 7, 57);
 }
 
 ul li .task-date-time {
@@ -153,7 +160,7 @@ ul li .fa-trash {
   }
   ul li {
     width: 100%;
-    padding: 10px;
+    padding: 10px
   }
 }
 
@@ -165,13 +172,20 @@ ul li .fa-trash {
 
 input[type="date"],
 input[type="time"] {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'PF Tempesta Seven', sans-serif;
+  font-size: 15px;
   padding: 5px;
-  border: 1px solid rgb(113, 64, 111);
+  border: 2px solid rgb(11, 7, 57);
   border-radius: 5px;
 }
 
 h4 {
-  font-family: "Jersey 25", sans-serif;
-  font-size: 30px;
+  font-family: 'PF Tempesta Seven', sans-serif;
+  font-size: 20px;
+}
+
+
+h2 {
+  font-family: 'PF Tempesta Seven', sans-serif;
+  font-size: 10px;
 }
