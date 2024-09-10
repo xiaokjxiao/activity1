@@ -107,6 +107,7 @@ ul li {
   width: 100%;
   min-height: 50px;
   border-radius: 5rem;
+  margin-bottom: 10px;
   word-wrap: break-word;
   overflow: hidden;
   cursor: pointer;
