@@ -7,12 +7,12 @@ const expiredList = document.getElementById('expired-container');
 
 function saveData() {
   localStorage.setItem('data', taskList.innerHTML);
-  localStorage.setItem('expiredData', expiredList.innerHTML); 
+  localStorage.setItem('expiredData', expiredList.innerHTML);
 }
 
 function sortTasks() {
   const tasksArray = Array.from(taskList.getElementsByTagName('li'));
-  
+  //sorts the list from closest deadline
   tasksArray.sort((a, b) => {
     const deadlineA = a.getAttribute('data-deadline');
     const deadlineB = b.getAttribute('data-deadline');
@@ -23,11 +23,9 @@ function sortTasks() {
 }
 
 function moveToExpired(task) {
-  taskList.removeChild(task);  
-  expiredList.appendChild(task);  
-
+  taskList.removeChild(task);
+  expiredList.appendChild(task);
   addDeleteExpiredTaskEvent(task);
-
   saveData();
 }
 
@@ -35,7 +33,7 @@ function addDeleteExpiredTaskEvent(task) {
   const trashIcon = task.querySelector('.fa-trash');
   if (trashIcon) {
     trashIcon.addEventListener("click", (e) => {
-      e.stopPropagation();  
+      e.stopPropagation();
       task.remove();
       saveData();
     });
@@ -43,7 +41,7 @@ function addDeleteExpiredTaskEvent(task) {
 }
 
 function newTask() {
-  const taskText = taskInput.value.trim();  
+  const taskText = taskInput.value.trim();
   const date = dateInput.value;
   const time = timeInput.value;
 
@@ -73,7 +71,7 @@ function newTask() {
     });
 
     trashIcon.addEventListener("click", (e) => {
-      e.stopPropagation();  
+      e.stopPropagation();
       li.remove();
       saveData();
     });
@@ -86,9 +84,9 @@ function newTask() {
     setInterval(() => {
       const now = new Date();
       if (deadline.getTime() < now.getTime()) {
-        moveToExpired(li);  
+        moveToExpired(li);
       }
-    }, 60000);  
+    }, 60000);
 
     sortTasks();
   }
@@ -110,7 +108,7 @@ function loadExpiredTasks() {
     expiredList.innerHTML = localStorage.getItem("expiredData");
     
     expiredList.querySelectorAll("li").forEach((li) => {
-      addDeleteExpiredTaskEvent(li);  
+      addDeleteExpiredTaskEvent(li);
     });
   }
 }
@@ -135,14 +133,13 @@ if (localStorage.getItem("data")) {
     });
 
     li.querySelector(".fa-trash").addEventListener("click", (e) => {
-      e.stopPropagation();  
+      e.stopPropagation();
       li.remove();
       saveData();
     });
   });
 
   checkForExpiredTasks();
-
   sortTasks();
 }
 
